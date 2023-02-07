@@ -63,3 +63,31 @@ If you want to learn more about building native executables, please consult http
 Easily start your RESTful Web Services
 
 [Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
+
+Help command
+```shell script
+mvn quarkus:dev
+
+mvn quarkus:dev -Dbooks.genre=Drama
+
+mvn quarkus:dev -Dbooks.genre="Drama Test"
+
+mvn test
+
+mvn test -Dbooks.genre="Drama Test"
+#add docker-image extension
+mvn quarkus:add-extension -Dextensions="container-image-docker"
+
+#build image
+mvn package  -DskipTests -Dquarkus.container-image.build=true -Dquarkus.package.type=jar -Dquarkus.container-image.group="w234" -Dquarkus.container-image.name=books -Dquarkus.container-image.tag=latest
+
+mvn package -Dquarkus.container-image.build=true -Dquarkus.package.type=native -Dquarkus.native.container-build=true -Dquarkus.container-image.name=books -Dquarkus.container-image.tag=native
+
+docker run -i --rm -p 8080:8080 donchi/rest-book:native
+
+
+
+docker run -i --rm -p 8080:8080 w234/books  
+
+```
+
