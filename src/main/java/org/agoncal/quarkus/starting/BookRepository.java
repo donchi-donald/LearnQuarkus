@@ -1,5 +1,7 @@
 package org.agoncal.quarkus.starting;
 
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -12,12 +14,13 @@ import java.util.Optional;
 @ApplicationScoped
 public class BookRepository {
 
-
+    @ConfigProperty(name = "books.author", defaultValue = "Donald Donchi 2")
+    String author;
     public List<Book> getAllBooks() {
         return List.of(
-                new Book(1, "Amour de vie", "Donald Donchi", 2022, "Romantique"),
-                new Book(2, "Tuerie", "Donald Donchi", 2023, "Action"),
-                new Book(3, "GP Valser", "Donald Donchi", 2022, "Assasin")
+                new Book(1, "Amour de vie", author, 2022, "Romantique"),
+                new Book(2, "Tuerie", author, 2023, "Action"),
+                new Book(3, "GP Valser", author, 2022, "Assasin")
         );
     }
 
